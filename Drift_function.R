@@ -121,8 +121,8 @@ CoreDrift <- function(CoreLon, CoreLat, Depth,
     y <- y + (a[i,'Avg_vn'] * (discTocont(i)/Speed))
   }
   
-  x <- x + (a[nrow(a),'Avg_ve'] * (((a[nrow(a),'Approx.Depth'] - a[nrow(a)-1,'Approx.Depth'])*0.5)/Speed)) 
-  y <- y + (a[nrow(a),'Avg_vn'] * (((a[nrow(a),'Approx.Depth'] - a[nrow(a)-1,'Approx.Depth'])*0.5)/Speed))
+  x <- x + as.numeric((a[nrow(a),'Avg_ve'] * (((a[nrow(a),'Approx.Depth'] - a[nrow(a)-1,'Approx.Depth'])*0.5)/Speed))) 
+  y <- y + as.numeric((a[nrow(a),'Avg_vn'] * (((a[nrow(a),'Approx.Depth'] - a[nrow(a)-1,'Approx.Depth'])*0.5)/Speed)))
   
   DepAdjLat <- as.numeric(CoreLat  + (y / r_earth) * (180 / pi))
   DepAdjLon <- as.numeric(CoreLon  + (x / r_earth) * (180 / pi)/cos(CoreLat*pi/180))
@@ -162,7 +162,7 @@ CoreDrift <- function(CoreLon, CoreLat, Depth,
     geom_text(data = count_data, aes(x = Season, y = 0.9*max(y_limits), label = paste('n=', n)), size = 3,vjust = 0, color = "black") +
     geom_hline(yintercept = mean(SubFloat.df$ve), linetype = 2)+
     stat_compare_means(label = "p.signif", method = "t.test",
-                       ref.group = ".all.", hide.ns = F)+
+                       ref.group = ".all.", hide.ns = T)+
     labs(title = "ve by Season", y = "Velocity (m/s)", x = "Season") +
     ylim(y_limits)
   
@@ -171,7 +171,7 @@ CoreDrift <- function(CoreLon, CoreLat, Depth,
     geom_text(data = count_data, aes(x = Season, y = 0.9*max(y_limits), label = paste('n=', n)),size = 3, vjust = 0, color = "black") +
     geom_hline(yintercept = mean(SubFloat.df$vn), linetype = 2)+
     stat_compare_means(label = "p.signif", method = "t.test",
-                       ref.group = ".all.", hide.ns = F)+ 
+                       ref.group = ".all.", hide.ns = T)+ 
     labs(title = "vn by Season", y = "Velocity (m/s)", x = "Season") +
     ylim(y_limits)
   
@@ -195,7 +195,7 @@ CoreDrift <- function(CoreLon, CoreLat, Depth,
     geom_text(data = count_data, aes(x = Approx.Depth, y = 0.9*max(y_limits), label = paste('n=', n)),size = 3, vjust = 0, color = "black")+
     geom_hline(yintercept = mean(SubFloat.df$ve), linetype = 2)+
     stat_compare_means(label = "p.signif", method = "t.test",
-                       ref.group = ".all.", hide.ns = F)+
+                       ref.group = ".all.", hide.ns = T)+
     labs(title = "ve by Depth", y = "Velocity (m/s)", x = "Approximate Depth (msbf)") +
     ylim(y_limits)
   
@@ -204,7 +204,7 @@ CoreDrift <- function(CoreLon, CoreLat, Depth,
     geom_text(data = count_data, aes(x = Approx.Depth, y = 0.9*max(y_limits), label = paste('n=', n)),size = 3, vjust = 0, color = "black")+
     geom_hline(yintercept = mean(SubFloat.df$vn), linetype = 2)+
     stat_compare_means(label = "p.signif", method = "t.test",
-                       ref.group = ".all.", hide.ns = F)+
+                       ref.group = ".all.", hide.ns = T)+
     labs(title = "vn by Depth", y = "Velocity (m/s)", x = "Approximate Depth (msbf)") +
     ylim(y_limits)
   
@@ -255,8 +255,8 @@ CoreDrift <- function(CoreLon, CoreLat, Depth,
   
   print(paste('Mean corer longitudinal displacement is', mean(CoreDisplacementX), 'meters and mean corer latitudinal displacement is', mean(CoreDisplacementY), 'meters'))
   print(paste('Mean corer seafloor landing coordinates are', mean_lon, mean_lat))
-  print(paste('When adjusting for currents variation with depth, mean corer longitudinal displacement is', mean(x), 
-              'meters, mean corer latitudinal displacement is', mean(y), 'meters'))
+  print(paste('When adjusting for currents variation with depth, mean corer longitudinal displacement is', x, 
+              'meters, mean corer latitudinal displacement is', y, 'meters'))
   print(paste('and mean corer seafloor landing coordinates are', DepAdjLon, DepAdjLat))
   
   
