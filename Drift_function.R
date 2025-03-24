@@ -160,12 +160,18 @@ CoreDrift <- function(CoreLon, CoreLat, Depth,
   ve <- ggplot(SubFloat.df, mapping = aes(Season,ve))+
     geom_boxplot() + 
     geom_text(data = count_data, aes(x = Season, y = 0.9*max(y_limits), label = paste('n=', n)), size = 3,vjust = 0, color = "black") +
+    geom_hline(yintercept = mean(SubFloat.df$ve), linetype = 2)+
+    stat_compare_means(label = "p.signif", method = "t.test",
+                       ref.group = ".all.", hide.ns = F)+
     labs(title = "ve by Season", y = "Velocity (m/s)", x = "Season") +
     ylim(y_limits)
   
   vn <- ggplot(SubFloat.df, mapping = aes(Season,vn))+
     geom_boxplot() + 
-    geom_text(data = count_data, aes(x = Season, y = 0.9*max(y_limits), label = paste('n=', n)),size = 3, vjust = 0, color = "black") + 
+    geom_text(data = count_data, aes(x = Season, y = 0.9*max(y_limits), label = paste('n=', n)),size = 3, vjust = 0, color = "black") +
+    geom_hline(yintercept = mean(SubFloat.df$vn), linetype = 2)+
+    stat_compare_means(label = "p.signif", method = "t.test",
+                       ref.group = ".all.", hide.ns = F)+ 
     labs(title = "vn by Season", y = "Velocity (m/s)", x = "Season") +
     ylim(y_limits)
   
@@ -187,12 +193,18 @@ CoreDrift <- function(CoreLon, CoreLat, Depth,
   ve <- ggplot(SubFloat.df, mapping = aes(Approx.Depth,ve))+
     geom_boxplot() + 
     geom_text(data = count_data, aes(x = Approx.Depth, y = 0.9*max(y_limits), label = paste('n=', n)),size = 3, vjust = 0, color = "black")+
+    geom_hline(yintercept = mean(SubFloat.df$ve), linetype = 2)+
+    stat_compare_means(label = "p.signif", method = "t.test",
+                       ref.group = ".all.", hide.ns = F)+
     labs(title = "ve by Depth", y = "Velocity (m/s)", x = "Approximate Depth (msbf)") +
     ylim(y_limits)
   
   vn <- ggplot(SubFloat.df, mapping = aes(Approx.Depth,vn))+
     geom_boxplot() + 
     geom_text(data = count_data, aes(x = Approx.Depth, y = 0.9*max(y_limits), label = paste('n=', n)),size = 3, vjust = 0, color = "black")+
+    geom_hline(yintercept = mean(SubFloat.df$vn), linetype = 2)+
+    stat_compare_means(label = "p.signif", method = "t.test",
+                       ref.group = ".all.", hide.ns = F)+
     labs(title = "vn by Depth", y = "Velocity (m/s)", x = "Approximate Depth (msbf)") +
     ylim(y_limits)
   
@@ -205,6 +217,9 @@ CoreDrift <- function(CoreLon, CoreLat, Depth,
   
   vn1 <- ggplot(SubFloat.df, mapping = aes(WE,ve))+
     geom_boxplot() + facet_wrap(~NS) +
+    geom_hline(yintercept = mean(SubFloat.df$ve), linetype = 2)+
+    stat_compare_means(label = "p.signif", method = "t.test",
+                       ref.group = ".all.", hide.ns = F)+
     labs(title = "ve by Position Relative to Corer Deployment", y = "Velocity (m/s)", x = "Location Relative to Corer", 
          caption = "Sanity Check: Do currents orientation/magnitude change singnificantly within the chosen geographical extent? If yes then extent should be reduced.") +
     ylim(y_limits) + theme(plot.caption = element_text(hjust = -0.2, colour = 'red'))
@@ -213,6 +228,9 @@ CoreDrift <- function(CoreLon, CoreLat, Depth,
   
   vn2 <- ggplot(SubFloat.df, mapping = aes(WE,vn))+
     geom_boxplot() + facet_wrap(~NS) +
+    geom_hline(yintercept = mean(SubFloat.df$vn), linetype = 2)+
+    stat_compare_means(label = "p.signif", method = "t.test",
+                       ref.group = ".all.", hide.ns = F)+
     labs(title = "vn by Position Relative to Corer Deployment", y = "Velocity (m/s)", x = "Location Relative to Corer") +
     ylim(y_limits)
   

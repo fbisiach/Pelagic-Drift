@@ -6,9 +6,9 @@
 
 # Set Work Directory. All output plots will be saved here. 
 # This directory should contain the .RData file containing the trimmed NOAA Subsurface Float database and the drift estimation function. 
-setwd('C:/Users/...')
+setwd("C:/Users/...")
 
-load('CoreSamplingEstimationTool.RData')
+load('Database&Function.RData')
 
 # Define coring deployment info
 CoreLatitude <- 43.010478  # Latitude of Core deployment
