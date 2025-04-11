@@ -83,9 +83,9 @@ CoreDrift(
 
 ### Notes
 
--The lowering speed is assumed to be constant and vertical (no tether angle).
+- The lowering speed is assumed to be constant and vertical (no tether angle).
 
--This is an approximation based on regional float trajectories — results should be interpreted with caution.
+- This is an approximation based on regional float trajectories — results should be interpreted with caution.
 
 ---
 
