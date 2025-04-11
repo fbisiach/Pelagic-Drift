@@ -17,7 +17,7 @@
 ## Requirements
 
 - R (version ≥ 4.0)
-- Packages: `ggplot2`, `dplyr`, `geosphere`, `maps`, `scales`, `lubridate`
+- Packages: `ggplot2`, `tidyverse` ,`ggpubr`, `MASS`, `maps`, `reshape2`, `raster`
 
 ---
 
@@ -26,15 +26,24 @@
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/CoreDrift.git
-2. Load the Environment
+git clone https://github.com/fbisiach/CoreDrift.git
+```
+
+### 2. Load the Environment
+
 Open R or RStudio, set your working directory to where the repository is located, and load the pre-compiled database and function:
 
+```r
 setwd("path/to/CoreDrift")
 load("Database&Function.RData")
-Usage
+```
+
+---
+
+### Usage
 Define the core deployment parameters in R:
 
+```r
 # Core deployment info
 CoreLatitude <- 43.010478     # Deployment latitude
 CoreLongitude <- -60.211776   # Deployment longitude
@@ -58,22 +67,36 @@ CoreDrift(
   LonLowRange = LonLowRange,
   LonHighRange = LonHighRange
 )
-Output
-Estimated drift distance and direction.
+```
 
-Drift trajectory plotted on a map.
+---
 
-Output files saved to the current working directory.
+### Output
 
-Notes
-The lowering speed is assumed to be constant and vertical (no tether angle).
+- Estimated drift distance and direction.
 
-This is an approximation based on regional float trajectories — results should be interpreted with caution.
+- Drift trajectory plotted on a map.
 
-Credits
-Subsurface float data sourced from NOAA AOML
+- Output files saved to the current working directory.
 
-Developed by Your Name
+---
 
-License
+### Notes
+
+-The lowering speed is assumed to be constant and vertical (no tether angle).
+
+-This is an approximation based on regional float trajectories — results should be interpreted with caution.
+
+---
+
+### Credits
+
+- Subsurface float data sourced from NOAA AOML
+
+- Developed by Francesco Bisiach
+
+---
+
+### License
+
 MIT License. See LICENSE file for details.
